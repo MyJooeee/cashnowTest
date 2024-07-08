@@ -133,7 +133,7 @@ class Post
         $this->publishedAt = $publishedAt;
     }
 
-    public function getAuthor(): ?User
+    public function getAutor(): ?User
     {
         return $this->author;
     }
