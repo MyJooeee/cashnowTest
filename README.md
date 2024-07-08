@@ -1,4 +1,4 @@
-Symfony Demo Application
+![img.png](img.png) Symfony CashNowMobile Test Application
 ========================
 
 The "Symfony Demo Application" is a reference application created to show how
