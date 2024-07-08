@@ -57,7 +57,7 @@ final class BlogController extends AbstractController
             $tag = $tags->findOneBy(['name' => $request->query->get('tag')]);
         }
 
-        $latestPosts = $posts->findLatest($page, $tag);
+        $latestPosts = $posts->findFirst($page, $tag);
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
