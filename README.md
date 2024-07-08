@@ -61,13 +61,12 @@ php -S localhost:8000 -t public/
 Tests
 -----
 
-* Q1/ Install Symfony project in your local environment on a project call cashnow_test;
-* Q2/ Use your unit tests to fix some errors;
-* Q3/ Make sure everything works and there is no typos by testing your project (use also your unit test to check some errors, and if necessary create new Unit Test).
-<br>Fixing the deprecated errors could be a very nice asset to your work
-* Q4/ Create a service for sending an email to the owner of the blog when you add a comment
-* Q5/ Update Read me to explain your feature
-* Q6/ Send us back a zip of your project cashnow_test
+* Install the Symfony project in your local environment, naming the project cashnow_test.
+* Use your unit tests to fix any errors. 
+* Ensure everything works and there are no typos by thoroughly testing your project. Use your unit tests to check for errors, and create new unit tests if necessary. Fixing deprecated errors would be a valuable addition to your work.
+* Create a service for sending an email to the blog owner when a comment is added.
+* Update the README to explain your feature.
+* Send us back a zip file of your cashnow_test project.
 
 ```bash
 cd my_project/
