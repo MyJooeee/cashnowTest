@@ -1,7 +1,8 @@
-![img.png](img.png) <br>Symfony CashNowMobile Test Application
+![img.png](img.png) <br>Symfony Test Application
 ========================
 
-The "Symfony Demo Application" is a reference application created to show how
+The "Symfony CashNow Test Application" is a reference application created to test your
+ability to adapt to a new technical environment, based on the architecture of our project
 to develop applications following the [Symfony Best Practices][1].
 
 You can also learn about these practices in [the official Symfony Book][5].
@@ -16,26 +17,13 @@ Requirements
 Installation
 ------------
 
-There are 3 different ways of installing this project depending on your needs:
+Install our project "Symfony Test Application"  :
 
-**Option 1.** [Download Symfony CLI][4] and use the `symfony` binary installed
-on your computer to run this command:
 
 ```bash
-symfony new --demo my_project
-```
-
-**Option 2.** [Download Composer][6] and use the `composer` binary installed
-on your computer to run these commands:
-
-```bash
-# you can create a new project based on the Symfony Demo project...
-composer create-project symfony/symfony-demo my_project
 
 # ...or you can clone the code repository and install its dependencies
-git clone https://github.com/symfony/demo.git my_project
-cd my_project/
-composer install
+git clone git@github.com:CashNowMobile/demo.git cashnow_test
 ```
 
 **Option 3.** Click the following button to deploy this project on Platform.sh,
@@ -50,12 +38,12 @@ Usage
 
 There's no need to configure anything before running the application. There are
 2 different ways of running this application depending on your needs:
-
 **Option 1.** [Download Symfony CLI][4] and run this command:
-
 ```bash
 cd my_project/
 symfony serve
+
+
 ```
 
 Then access the application in your browser at the given URL (<https://localhost:8000> by default).
@@ -73,17 +61,20 @@ php -S localhost:8000 -t public/
 Tests
 -----
 
-* Q1/ Install Symfony projects in your local environment on a project call cashnow_test;
-* Q2/ Use your unit test to fix some errors;
-* Q3/ Make sure by testing your project everything works and there is no typos (use also your unit test to check some errors, and if necessary create new Unit Test).
+* Q1/ Install Symfony project in your local environment on a project call cashnow_test;
+* Q2/ Use your unit tests to fix some errors;
+* Q3/ Make sure everything works and there is no typos by testing your project (use also your unit test to check some errors, and if necessary create new Unit Test).
+<br>Fixing the deprecated errors could be a very nice asset to your work
 * Q4/ Create a service for sending an email to the owner of the blog when you add a comment
 * Q5/ Update Read me to explain your feature
-* Q6/ End us back a zip of your project cashnow_test
+* Q6/ Send us back a zip of your project cashnow_test
 
 ```bash
 cd my_project/
 ./bin/phpunit
 ```
+
+GOOD LUCK :)
 
 [1]: https://symfony.com/doc/current/best_practices.html
 [2]: https://symfony.com/doc/current/setup.html#technical-requirements
