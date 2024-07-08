@@ -62,9 +62,9 @@ Tests
 -----
 
 * Install the Symfony project in your local environment, naming the project cashnow_test.
-* Use your unit tests to fix any errors. 
-* Ensure everything works and there are no typos by thoroughly testing your project. Use your unit tests to check for errors, and create new unit tests if necessary. Fixing deprecated errors would be a valuable addition to your work.
-* Create a service for sending an email to the blog owner when a comment is added.
+* Ensure everything works and there are no typos by thoroughly testing your project. Use your unit tests to check and fix any errors. Fixing deprecated errors would be a valuable addition to your work.
+* An end user has indicated that they would prefer to see the latest posts first. Can you make this change?
+* An existing feature triggers an email to the author of a post when a comment is added. This feature does not work in dev mode. Can you fix it?
 * Update the README to explain your feature.
 * Send us back a zip file of your cashnow_test project.
 
