@@ -46,7 +46,7 @@ class PostRepository extends ServiceEntityRepository
             ->innerJoin('p.author', 'a')
             ->leftJoin('p.tags', 't')
             ->where('p.publishedAt <= :now')
-            ->orderBy('p.publishedAt', 'DESC')
+            ->orderBy('p.publishedAt', 'ASC')
             ->setParameter('now', new \DateTimeImmutable())
         ;
 
