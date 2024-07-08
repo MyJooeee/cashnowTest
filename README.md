@@ -73,7 +73,12 @@ php -S localhost:8000 -t public/
 Tests
 -----
 
-Execute this command to run tests:
+* Q1/ Install Symfony projects in your local environment on a project call cashnow_test;
+* Q2/ Use your unit test to fix some errors;
+* Q3/ Make sure by testing your project everything works and there is no typos (use also your unit test to check some errors, and if necessary create new Unit Test).
+* Q4/ Create a service for sending an email to the owner of the blog when you add a comment
+* Q5/ Update Read me to explain your feature
+* Q6/ End us back a zip of your project cashnow_test
 
 ```bash
 cd my_project/
