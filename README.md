@@ -55,14 +55,15 @@ Tests
 -----
 
 * Install the Symfony project in your local environment, naming the project cashnow_test.
-* Create a personal git repo with the original project. Create a branch for the test.
-* Provide access to the repo to test@cashnowmobile.com
+* Create a personal git repo (gitlab, github, ...) with the original project. Create a branch for the test.
+* Provide access to the repo to orey@cashnowmobile.com
 * Ensure everything works and there are no typos by thoroughly testing your project. Use your unit tests to check and fix any errors.
 * An end user has indicated that they would prefer to see the latest posts first. Can you make this change?
 * An existing feature triggers an email to the author of a post when a comment is added. This feature does not work in dev mode. Can you fix it?
 * If a user logs in, they are redirected to the admin page, which causes an error if the assigned role is USER. Fix this issue by redirecting to the blog page after login.
 * Search does not take into account the tags assigned to posts. Modify it to fix this issue.
-* Add the ability to upload a file to the Post object.
+* Add the ability to upload a file to the post object, based on a service (we will also use the commands make:entity to modify the Post entity, make:migration , and doctrine:migration:migrate
+  to update the database).
 * Update the README to explain your feature.
 
 ```bash
