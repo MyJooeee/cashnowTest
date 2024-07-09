@@ -23,7 +23,7 @@ Install our project "Symfony Test Application"  :
 ```bash
 
 # ...or you can clone the code repository and install its dependencies
-git clone git@github.com:CashNowMobile/demo.git cashnow_test
+git clone git@github.com:CashNowMobile/cashnow_test.git cashnow_test
 ```
 
 Usage
