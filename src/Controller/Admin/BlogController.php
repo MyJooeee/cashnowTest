@@ -26,6 +26,8 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 /**
  * Controller used to manage blog contents in the backend.
@@ -80,6 +82,7 @@ final class BlogController extends AbstractController
         #[CurrentUser] User $user,
         Request $request,
         EntityManagerInterface $entityManager,
+        SluggerInterface $slugger
     ): Response {
         $post = new Post();
         $post->setAuthor($user);
@@ -95,6 +98,28 @@ final class BlogController extends AbstractController
         // throws an exception if the form has not been submitted.
         // See https://symfony.com/doc/current/forms.html#processing-forms
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
+
+            if ($file) {
+              $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+              $safeFilename = $slugger->slug($originalFilename);
+              $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+              // Move file to storage directory
+              try {
+                  $file->move(
+                      $this->getParameter('uploads_directory'),
+                      $newFilename
+                  );
+              } catch (FileException $e) {
+                  // To see...
+              }
+
+              // Stocke le nom du fichier dans l'entité Post
+              $post->setFilename($newFilename);
+          }
+
+
             $entityManager->persist($post);
             $entityManager->flush();
 

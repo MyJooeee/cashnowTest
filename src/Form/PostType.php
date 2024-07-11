@@ -16,6 +16,7 @@ use App\Form\Type\DateTimePickerType;
 use App\Form\Type\TagsInputType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
@@ -70,6 +71,10 @@ final class PostType extends AbstractType
                 'label' => 'label.tags',
                 'required' => false,
             ])
+            ->add('file', FileType::class, [
+              'required' => false,
+              'mapped' => false,
+          ])
             // form events let you modify information or fields at different steps
             // of the form handling process.
             // See https://symfony.com/doc/current/form/events.html
