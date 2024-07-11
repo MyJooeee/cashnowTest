@@ -70,10 +70,14 @@ class PostRepository extends ServiceEntityRepository
         }
 
         $queryBuilder = $this->createQueryBuilder('p');
+        // Left join between table symfony_demo_post and symfony_demo_tag
+        // Linked by : symfony_demo_post_tag
+        $queryBuilder->leftJoin('p.tags', 't');
 
         foreach ($searchTerms as $key => $term) {
             $queryBuilder
                 ->orWhere('p.title LIKE :t_'.$key)
+                ->orWhere('t.name LIKE :t_'.$key)
                 ->setParameter('t_'.$key, '%'.$term.'%')
             ;
         }
