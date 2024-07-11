@@ -18,6 +18,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Defines the properties of the Post entity to represent the blog posts.
@@ -57,6 +58,15 @@ class Post
     #[Assert\NotBlank(message: 'post.blank_content')]
     #[Assert\Length(min: 10, minMessage: 'post.too_short_content')]
     private ?string $content = null;
+
+    /**
+     * @var File|null
+     * @Assert\File(maxSize="2M")
+     */
+    private $file;
+
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private $filename;
 
     #[ORM\Column]
     private \DateTimeImmutable $publishedAt;
@@ -173,6 +183,26 @@ class Post
     public function setSummary(?string $summary): void
     {
         $this->summary = $summary;
+    }
+
+    public function getFile(): ?File
+    {
+        return $this->file;
+    }
+
+    public function setFile(?File $file): void
+    {
+        $this->file = $file;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(?string $filename): void
+    {
+        $this->filename = $filename;
     }
 
     public function addTag(Tag ...$tags): void
