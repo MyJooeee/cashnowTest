@@ -100,24 +100,7 @@ final class BlogController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $file = $form->get('file')->getData();
 
-            if ($file) {
-              $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-              $safeFilename = $slugger->slug($originalFilename);
-              $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
-
-              // Move file to storage directory
-              try {
-                  $file->move(
-                      $this->getParameter('uploads_directory'),
-                      $newFilename
-                  );
-              } catch (FileException $e) {
-                  // To see...
-              }
-
-              // Store the filename into Post Entity
-              $post->setFilename($newFilename);
-          }
+            $this->setFileUpload($file, $slugger, $post);
 
 
             $entityManager->persist($post);
@@ -165,12 +148,16 @@ final class BlogController extends AbstractController
      */
     #[Route('/{id:post}/edit', name: 'admin_post_edit', requirements: ['id' => Requirement::POSITIVE_INT], methods: ['GET', 'POST'])]
     #[IsGranted('edit', subject: 'post', message: 'Posts can only be edited by their authors.')]
-    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
+    public function edit(Request $request, Post $post, EntityManagerInterface $entityManager, SluggerInterface $slugger): Response
     {
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('file')->getData();
+            $this->setFileUpload($file, $slugger, $post);
+
             $entityManager->flush();
             $this->addFlash('success', 'post.updated_successfully');
 
@@ -209,4 +196,35 @@ final class BlogController extends AbstractController
 
         return $this->redirectToRoute('admin_post_index', [], Response::HTTP_SEE_OTHER);
     }
+
+  /**
+   * Set file upload
+   *
+   * @param $file
+   * @param $slugger
+   * @param $post
+   * @return void
+   */
+  protected function setFileUpload($file, $slugger, $post) 
+  {
+    if ($file) {
+      $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
+      $safeFilename = $slugger->slug($originalFilename);
+      $newFilename = $safeFilename.'-'.uniqid().'.'.$file->guessExtension();
+
+      // Move file to storage directory
+      try {
+          $file->move(
+              $this->getParameter('uploads_directory'),
+              $newFilename
+          );
+      } catch (FileException $e) {
+        throw new FileException('File upload failed : '. $e);
+      }
+
+      // Store the filename into Post Entity
+      $post->setFilename($newFilename);
+    }
+  }
+  
 }
