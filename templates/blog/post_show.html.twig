@@ -10,9 +10,17 @@
         <span class="metadata"><i class="fa fa-user"></i> {{ post.author.fullName }}</span>
     </p>
 
-    {{ post.content|markdown_to_html|sanitize_html }}
+    <div id="post-section" style="display: flex; flex-direction: column; gap: 10px"> 
+      {{ post.content|markdown_to_html|sanitize_html }}
 
-    {{ include('blog/_post_tags.html.twig') }}
+      {{ include('blog/_post_tags.html.twig') }}
+
+      {% if post.filename %}
+        {# the image 'public/uploads/' #}
+        <img src="{{ asset('uploads/' ~ post.filename) }}" alt={{ post.filename }} width="600" height="400">
+      {% endif %}
+    </div>
+
 
     <div id="post-add-comment" class="well">
         {# The 'IS_AUTHENTICATED_FULLY' role ensures that the user has entered

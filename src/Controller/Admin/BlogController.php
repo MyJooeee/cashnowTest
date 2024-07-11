@@ -115,7 +115,7 @@ final class BlogController extends AbstractController
                   // To see...
               }
 
-              // Stocke le nom du fichier dans l'entité Post
+              // Store the filename into Post Entity
               $post->setFilename($newFilename);
           }
 
