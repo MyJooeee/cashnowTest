@@ -39,7 +39,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
  * @author Javier Eguiluz <javier.eguiluz@gmail.com>
  */
 #[Route('/admin/post')]
-#[IsGranted(User::ROLE_ADMIN)]
 final class BlogController extends AbstractController
 {
     /**
@@ -59,6 +58,11 @@ final class BlogController extends AbstractController
         #[CurrentUser] User $user,
         PostRepository $posts,
     ): Response {
+        
+        if(in_array('ROLE_USER', $user->getRoles(), true)) {
+          return $this->redirectToRoute('blog_index');
+        }
+
         $authorPosts = $posts->findBy(['author' => $user], ['publishedAt' => 'DESC']);
 
         return $this->render('admin/blog/index.html.twig', ['posts' => $authorPosts]);
